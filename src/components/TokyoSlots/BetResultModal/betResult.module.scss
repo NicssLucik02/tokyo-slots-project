@@ -1,0 +1,133 @@
+@import '../../../styles/animations.scss';
+
+.betResult {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 11;
+    width: 300px;
+    height: 135px;
+
+    &Overlay {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(165, 222, 247, 0.587);
+        z-index: 10;
+
+&::before {
+  content: '';
+  position: absolute;
+  width: 250vh;
+  height: 250vh;
+  background: repeating-conic-gradient(
+    from 0deg at center,
+    transparent 0deg,
+    transparent 7deg,          
+    rgba(255, 255, 255, 0.2) 7deg,        
+    rgba(255, 255, 255, 0.5) 18deg, 
+    transparent 18deg
+  );
+  background-size: cover;
+
+  @include rotateSharpRaysAnimation;
+  
+  mask-image: radial-gradient(
+    circle at center,
+    transparent 8%,
+    black 25%,
+    black 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    transparent 8%,
+    black 25%,
+    black 100%
+  );
+
+  filter: brightness(1.4) contrast(2);
+  opacity: 0.9;
+}
+
+        &Lose {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(247, 64, 94, 0.25);
+            z-index: 10;
+        }
+    }
+    
+    &Container {
+        position: absolute;
+        background-image: url('../../../assets/images/BetResultImage.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        transform: scaleX(-1);
+
+        &Lose {
+          position: absolute;
+          background-image: url('../../../assets/images/BetResultImage.png');
+          background-repeat: no-repeat;
+          background-size: contain;
+          width: 100%;
+          height: 100%;
+          left: 0;
+          transform: none;
+        }
+    }
+
+    &Title {
+        position: absolute;
+        color: var(--color-blue);
+        -webkit-text-stroke: 3px var(--color-brown);
+        font-size: 45px;
+        font-weight: 400;
+        line-height: 72%;
+        text-shadow: 0px 4px rgba(0, 0, 0, 0.25);
+        rotate: -10deg;
+        top: 20px;
+        z-index: 2;
+        left: 50px;
+
+        &Lose {
+          position: absolute;
+          color: var(--color-red);
+          -webkit-text-stroke: 3px var(--color-brown);
+          font-size: 45px;
+          font-weight: 400;
+          line-height: 72%;
+          text-shadow: 0px 4px rgba(0, 0, 0, 0.25);
+          rotate: 10deg;
+          top: 10px;
+          z-index: 2;
+          left: 50px;
+        }
+    }
+
+    &Image {
+        transform: scaleX(-1);
+    }
+
+    &Amount {
+        display: flex;
+        align-items: center;
+        margin-top: 40px;
+        gap: 5px;
+        z-index: 5;
+    }
+
+    &WinImage {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+    }
+}

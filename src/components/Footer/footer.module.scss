@@ -1,0 +1,71 @@
+.footer {
+    position: relative;
+    background-color: var(--color-background-tokyo);
+    width: 100%;
+
+    &Container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: 100%;
+    }
+    
+    &BackgroundCity {
+        position: absolute;
+        background-image: url("../../assets/images/TokyoCity.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 270px;
+        bottom: 125px;
+    }
+
+    &BackgroundCloud {
+        position: absolute;
+        background-image: url("../../assets/images/CloudBottom.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        object-fit: cover;
+        width: 100%;
+        height: 220px;
+        z-index: 2;
+        pointer-events: none    
+    }
+
+    &Balance {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        background-image: url("../../assets/images/BalanceTrap.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: bottom;
+        width: 410px;
+        height: 123px;
+        z-index: 3;
+
+        &Text {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 55px;
+            font-weight: 400;
+            color: rgba(255, 196, 52, 1);
+            -webkit-text-stroke: 2px var(--color-brown); 
+        }
+
+        &Amount {
+            display: flex;
+            align-items: center;
+            font-family: 'Bungee';
+            font-size: 23px;
+            font-weight: 400;
+            color: #fff;
+        }
+    }
+
+}

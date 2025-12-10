@@ -1,0 +1,146 @@
+@import "../../styles/animations.scss";
+@import "../../styles/mixins.scss";
+
+.coin,
+.cherrySlot,
+.coinHappyBig,
+.coinHappySmall,
+.crown,
+.lemonSlot,
+.lemonSlotBig,
+.diamondSlot,
+.ethereumSlot,
+.ethereumSlotBig,
+.sevenSlot,
+.sevenSlotSecond {
+  @include jumpingAnimation;
+  position: absolute;
+  z-index: 2;
+}
+
+  .coinsLayout {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  .coin {
+    bottom: 0;
+    left: 25%;
+  }
+
+  .cherrySlot {
+    top: 500px;
+    left: -10px;
+    
+    @include mobile {
+      top: 400px;
+      left: 0;
+    }
+}
+
+.coinHappySmall {
+  top: 200px;
+  left: 20%;
+
+  @include tablet {
+    left: 1%;
+  }
+
+  @include mobile {
+    top: 400px;
+    left: 15%;
+  }
+}
+
+.coinHappyBig {
+  top: 500px;
+  left: 60px;
+
+  @include tablet {
+    top: 420px;
+    left: 10px;
+  }
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.ethereumSlot {
+  top: 100px;
+  right: 1%;
+
+  @include mobile {
+    top: 400px;
+    right: 40px;
+    right: 5%;
+  }
+
+  &Big {
+    top: 500px;
+    right: 20px;
+
+    @include mobile {
+      display: none;
+    }
+  }
+}
+
+.diamondSlot {
+  top: 300px;
+  right: 10px;
+
+    @include mobile {
+    top: 450px;
+    right: 80px;
+    right: 5%;
+  }
+}
+
+.sevenSlot {
+  top: 500px;
+  right: 200px;
+  rotate: 25deg;
+
+  @include tablet {
+    top: 400px;
+    right: 1%;
+  }
+
+  @include mobile {
+    display: none;
+  }
+
+  &Second {
+    top: 580px;
+    left: 25%;
+    rotate: -15deg;
+
+    @include tablet {
+      display: none;
+    }
+  }
+}
+
+.lemonSlot {
+  top: 580px;
+  right: 300px;
+
+  &Big{
+    top: 200px;
+    right: 150px;
+
+    @include tablet {
+      display: none;
+    }
+  }
+}
+
+.crown {
+  
+  @include mobile {
+    display: none;
+  }
+}
+
