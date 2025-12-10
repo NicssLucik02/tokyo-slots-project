@@ -13,6 +13,7 @@
     transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
     backface-visibility: hidden;
     -webkit-tap-highlight-color: transparent;
+    z-index: 5;
 
   &:active {
     transform: translateY(10px);
