@@ -11,6 +11,7 @@ interface SlotStore {
   lastWin: number | null;
   gameResult: 'idle' | 'win' | 'lose' | null;
   jackpot: number;
+  
 
   handleChangeBet: (amount: string) => void;
   applyWin: (winAmount: number) => void;
@@ -54,7 +55,7 @@ export const useSlotStore = create<SlotStore>()(
         : Array.from({ length: reelsCount }, () => Math.floor(Math.random() * symbolsCount));
 
         set({
-          spinToken: get().spinToken + 1,
+          spinToken: Date.now(),
           reelStops: stops,
         });
       },
@@ -102,7 +103,6 @@ export const useSlotStore = create<SlotStore>()(
           reelStops: [],
           balance: get().balance - bet,
           spinBet: bet,
-          spinToken: Date.now(),
           lastWin: null,
           gameResult: 'idle',
         });

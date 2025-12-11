@@ -24,7 +24,7 @@ export const TokyoSlots = () => {
     <section className={styles.tokyoSlots}>
         <div className={styles.tokyoSlotsContainer}>
       <Slot />
-        {/* {gameResult === 'win' || gameResult === 'lose' ? <BetResultModal /> : null} */}
+        {gameResult === 'win' || gameResult === 'lose' ? <BetResultModal /> : null}
           <p className={styles.tokyoSlotsTitle}>PLACE A BID</p>
           <div className={styles.tokyoSlotsActions}>
             <PrimaryButton content={"-"} action={handleDecrementBet} disabled={isDisabled} /> 
@@ -35,8 +35,7 @@ export const TokyoSlots = () => {
           <SpinButton 
             action={handleStartSpin} 
             disabled={isSpinning}
-          />
-          <div className={styles.backgroundCity} />
+          />       
         </div>
         
     </section>

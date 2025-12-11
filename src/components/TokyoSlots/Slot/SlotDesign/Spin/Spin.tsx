@@ -9,11 +9,12 @@ type Props = {
   spinToken?: number;
   stopIndex?: number;
   onStop?: (index: number) => void;
+  allowStop?: boolean;
 }
 
-export const Spin:React.FC<Props> = ({ slotIcon, spinToken = 0, stopIndex, onStop }) => {
+export const Spin:React.FC<Props> = ({ slotIcon, spinToken = 0, stopIndex, onStop, allowStop = false }) => {
   const { isSpinning } = useSlotStore();
-  const { reelItems, position } = useSpinAnimation({ spinToken, stopIndex, onStop });
+  const { reelItems, position } = useSpinAnimation({ spinToken, stopIndex, allowStop, onStop });
 
   return (
     <div className={styles.spin}>

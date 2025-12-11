@@ -8,8 +8,6 @@ type Props = {
 }
 
 export const PrimaryButton:React.FC<Props> = ({ content, action, disabled }) => {
-console.log(disabled);
-
     return (
         <button className={classNames(styles.primaryButton, { [styles.disabled!]: !!disabled })} onClick={action} disabled={disabled}>
             <p className={styles.primaryButtonContent}>{content}</p>

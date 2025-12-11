@@ -1,15 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { symbols } from "../constants/symbols";
-import { useSlotStore } from "../store/useSlotStore";
 
 type Params = {
   spinToken?: number;
   stopIndex?: number;
+  allowStop?: boolean;
   onStop?: (index: number) => void;
 };
 
-export const useSpinAnimation = ({ spinToken = 0, stopIndex, onStop }: Params) => {
-  const { handleChangeSpinStatus } = useSlotStore();
+export const useSpinAnimation = ({ spinToken = 0, stopIndex, allowStop = false, onStop }: Params) => {
 
   const itemHeight = 110;
   const totalItems = symbols.length * 4;
@@ -23,12 +22,19 @@ export const useSpinAnimation = ({ spinToken = 0, stopIndex, onStop }: Params) =
   const animationStateRef = useRef<{
     startTime: number;
     absPos: number;
-    goalAbsPos: number;
-    decelStartPos: number;
+    goalAbsPos: number | null;
+    decelStartPos: number | null;
     finalIndex: number;
+    mode: 'spinning' | 'decel' | 'stopped';
   } | null>(null);
 
+  const shouldStopRef = useRef<boolean>(false);
   useEffect(() => {
+    shouldStopRef.current = !!allowStop;
+  }, [allowStop]);
+
+  useEffect(() => {
+    shouldStopRef.current = false;
     if (!spinToken) return;
 
     if (rafRef.current) {
@@ -36,70 +42,64 @@ export const useSpinAnimation = ({ spinToken = 0, stopIndex, onStop }: Params) =
       rafRef.current = null;
     }
 
-    handleChangeSpinStatus(true);
-
     const now = performance.now();
 
     const currentAbs = animationStateRef.current?.absPos ?? 0;
-    const remainder = currentAbs % cycleHeight;
-
     const targetIndex = stopIndex !== undefined 
       ? Math.abs(stopIndex) % symbols.length 
       : Math.floor(Math.random() * symbols.length);
 
-    let deltaToTarget = (targetIndex * itemHeight - remainder + cycleHeight) % cycleHeight;
-    if (deltaToTarget < itemHeight) deltaToTarget += cycleHeight;
-
-    const extraCycles = 3 + Math.floor(Math.random() * 2);
-    const goalAbsPos = currentAbs + deltaToTarget + extraCycles * cycleHeight;
+    const goalAbsPos = null;
 
     animationStateRef.current = {
       startTime: now,
       absPos: currentAbs,
       goalAbsPos,
-      decelStartPos: 0,
+      decelStartPos: null,
       finalIndex: targetIndex,
+      mode: 'spinning',
     };
 
-    const ACCEL_MS = 800 + Math.random() * 300;
-    const CRUISE_MS = 1400 + Math.random() * 600;
-    const DECEL_MS = 2200 + Math.random() * 800;
     const MAX_SPEED = 1100;
+    const DECEL_MS = 1200;
 
     let lastTime = now;
 
     const animate = (time: number) => {
       const state = animationStateRef.current!;
-      const t = time - state.startTime;
       const dt = (time - lastTime) / 1000;
       lastTime = time;
 
-      let speed = 0;
+      if (state.mode === 'spinning') {
+        state.absPos += MAX_SPEED * dt;
 
-      if (t < ACCEL_MS) {
-        const k = t / ACCEL_MS;
-        speed = MAX_SPEED * (1 - Math.cos(k * Math.PI)) / 2;
-      } else if (t < ACCEL_MS + CRUISE_MS) {
-        speed = MAX_SPEED;
-      } else if (t < ACCEL_MS + CRUISE_MS + DECEL_MS) {
-        const decelProgress = (t - ACCEL_MS - CRUISE_MS) / DECEL_MS;
-        if (state.decelStartPos === 0) {
+        if (shouldStopRef.current && state.goalAbsPos === null) {
+          const remainderLocal = state.absPos % cycleHeight;
+          let deltaToTarget = (state.finalIndex * itemHeight - remainderLocal + cycleHeight) % cycleHeight;
+          if (deltaToTarget < itemHeight) deltaToTarget += cycleHeight;
+          const extraCycles = 1;
+          state.goalAbsPos = state.absPos + deltaToTarget + extraCycles * cycleHeight;
           state.decelStartPos = state.absPos;
+          state.startTime = time;
+          state.mode = 'decel';
         }
-        const distanceToGoal = state.goalAbsPos - state.decelStartPos;
+      } else if (state.mode === 'decel') {
+        const decelStart = state.decelStartPos ?? state.absPos;
+        const distanceToGoal = (state.goalAbsPos ?? state.absPos) - decelStart;
+        const decelProgress = Math.min(1, (time - state.startTime) / DECEL_MS);
         const eased = 1 - Math.pow(1 - decelProgress, 3);
-        state.absPos = state.decelStartPos + distanceToGoal * eased;
-      } else {
-        state.absPos = state.goalAbsPos;
+        state.absPos = decelStart + distanceToGoal * eased;
+
+        if (decelProgress >= 1) {
+          state.absPos = state.goalAbsPos ?? state.absPos;
+          state.mode = 'stopped';
+        }
       }
 
-      if (t < ACCEL_MS + CRUISE_MS + DECEL_MS) {
-        state.absPos += speed * dt;
+      if (state.mode !== 'stopped') {
         rafRef.current = requestAnimationFrame(animate);
       } else {
-        state.absPos = state.goalAbsPos;
-        setPosition(state.absPos % totalHeight);
-        handleChangeSpinStatus(false);
+        setPosition(((state.absPos % totalHeight) + totalHeight) % totalHeight);
         onStop?.(state.finalIndex);
         rafRef.current = null;
         return;
@@ -121,7 +121,7 @@ export const useSpinAnimation = ({ spinToken = 0, stopIndex, onStop }: Params) =
 
   const reelItems = useMemo(() => {
     return Array.from({ length: totalItems }, (_, i) => symbols[i % symbols.length]);
-  }, []);
+  }, [totalItems]);
 
   return { reelItems, position };
 };

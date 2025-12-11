@@ -14,7 +14,17 @@
 }
 
 html {
+    min-height: 100vh;
 }
 body {
     background-color: var(--color-background-tokyo);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.appContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }

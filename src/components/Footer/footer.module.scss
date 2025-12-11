@@ -1,5 +1,6 @@
+@import '../../styles/mixins.scss';
+
 .footer {
-    position: relative;
     width: 100%;
     height: 180px;
 
@@ -20,7 +21,8 @@
         width: 100%;
         height: 270px;
         z-index: 2;
-        pointer-events: none    
+        pointer-events: none;    
+        bottom: 0;
     }
 
     &Balance {
@@ -36,6 +38,10 @@
         width: 410px;
         height: 60%;
         z-index: 3;
+
+        @include mobile {
+            width: 90%;
+        }
 
         &Text {
             position: absolute;
@@ -57,5 +63,14 @@
             color: #fff;
         }
     }
-
 }
+
+.backgroundCity {
+        position: absolute;
+        background-image: url("../../assets/images/TokyoCity.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 270px;
+        bottom: 100px;
+    }

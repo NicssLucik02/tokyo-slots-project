@@ -54,10 +54,6 @@
         align-items: center;
         justify-content: center;
         object-fit: cover;
-
-        @include mobile {
-            height: 80px;
-        }
     }
 
     &ItemImage {
