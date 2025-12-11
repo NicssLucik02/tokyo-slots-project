@@ -30,3 +30,9 @@
         color: var(--color-brown);
     }
 }
+
+.disabled {
+  background-color: rgb(150, 149, 149);
+  pointer-events: none; 
+
+}

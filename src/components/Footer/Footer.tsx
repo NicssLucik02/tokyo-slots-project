@@ -9,7 +9,7 @@ export const Footer = () => {
     return (
         <footer className={styles.footer}>
             <div className={styles.footerContainer}>
-                <div className={styles.footerBackgroundCity} />
+                
                 <div className={styles.footerBackgroundCloud} />
 
                 <div className={styles.footerBalance}>

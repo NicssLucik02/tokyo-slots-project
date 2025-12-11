@@ -42,15 +42,16 @@
 
      &EyeLeft {
         position: absolute;
-        left: 40px;
-        bottom: 15px;
+        left: 0;
+        bottom: 0;
+        transform: translateX(40px) translateY(-15px);
       }
       
       &EyeRight {
         position: absolute;
-        transform: scaleX(-1);
-        bottom: 15px;
-        right: 40px;
+        bottom: 0;
+        right: 0;
+        transform: translateX(-40px) translateY(-15px) scaleX(-1);
       }
 
     &Cheek {
@@ -62,26 +63,27 @@
 
       &HandLeft {
         position: absolute;
-        left: -11px;
-        top: 150px;
-        transform: scaleX(-1);
+        left: 0;
+        top: 0;
+        transform: translateX(-11px) translateY(150px) scaleX(-1);
       }
       
       &HandRight {
         position: absolute;
-        right: -11px;
-        top: 150px;
+        right: 0;
+        top: 0;
+        transform: translateX(-11px) translateY(150px);
       }
 
       &Bottom {
         position: absolute;
-        top: 206px;
         left: 50%;
-        transform: translateX(-50%);
+        top: 0;
+        transform: translateX(-50%) translateY(206px);
         z-index: 5;
 
         @include mobile {
-          top: 184px;
+          transform: translateX(-50%) translateY(184px);
         }
       }
 

@@ -12,3 +12,9 @@
     --color-brown: rgba(52, 29, 26, 1);
     --color-white: rgba(254, 254, 255, 1);
 }
+
+html {
+}
+body {
+    background-color: var(--color-background-tokyo);
+}

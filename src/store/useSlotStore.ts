@@ -112,7 +112,11 @@ export const useSlotStore = create<SlotStore>()(
 
       handleIncrementBet: () => set({ currentBet: (Number(get().currentBet) + 50).toString() }),
 
-      handleDecrementBet: () => set({ currentBet: (Number(get().currentBet) - 50).toString() }),
+      handleDecrementBet: () => {
+        const currentBet = Number(get().currentBet);
+        const nextBet = Math.max(0, currentBet - 50);
+        set({ currentBet: nextBet.toString() });
+      },
 
       handleChangeSpinStatus: (state: boolean) => set({ isSpinning: state }),
       

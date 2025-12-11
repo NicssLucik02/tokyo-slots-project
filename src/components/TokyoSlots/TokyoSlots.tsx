@@ -15,26 +15,30 @@ export const TokyoSlots = () => {
     handleDecrementBet, 
     handleStartSpin, 
     gameResult,
-    isSpinning
+    isSpinning,
   } = useSlotStore();
-
+  
+  const isDisabled = Number(currentBet) <= 0;
+  
   return (
     <section className={styles.tokyoSlots}>
         <div className={styles.tokyoSlotsContainer}>
       <Slot />
-        {gameResult === 'win' || gameResult === 'lose' ? <BetResultModal /> : null}
+        {/* {gameResult === 'win' || gameResult === 'lose' ? <BetResultModal /> : null} */}
           <p className={styles.tokyoSlotsTitle}>PLACE A BID</p>
           <div className={styles.tokyoSlotsActions}>
-            <PrimaryButton content={"+"} action={handleIncrementBet} />
+            <PrimaryButton content={"-"} action={handleDecrementBet} disabled={isDisabled} /> 
             <InputSlots bet={currentBet} handleChange={handleChangeBet} />
-            <PrimaryButton content={"-"} action={handleDecrementBet} /> 
+            <PrimaryButton content={"+"} action={handleIncrementBet} />
           </div>
           
           <SpinButton 
             action={handleStartSpin} 
             disabled={isSpinning}
           />
+          <div className={styles.backgroundCity} />
         </div>
+        
     </section>
   );
 }

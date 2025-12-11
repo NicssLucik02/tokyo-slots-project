@@ -27,3 +27,4 @@ export const useSpinController = () => {
 
   return { handleStopAt, reset };
 };
+

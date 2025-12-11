@@ -28,9 +28,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${pocketMonk.className} ${bungee.variable}`}>
         <Header />
-        <CoinsLayout />
+        {/* <CoinsLayout /> */}
         {children} 
-        <CloudReveal />
+        {/* <CloudReveal /> */}
         <Footer />
       </body>
     </html>

@@ -8,9 +8,9 @@ import { useSlotStore } from "../../../store/useSlotStore";
 import { useSpinController } from "@/src/hooks/useSpinContoller";
 
 export const Slot = () => {
-    const { isSpinning, reelStops, spinToken} = useSlotStore();
+    const { isSpinning, reelStops, spinToken } = useSlotStore();
     const { handleStopAt } = useSpinController();
-
+    
     return (
         <div className={styles.slot}>
             <div className={styles.slotContainer}>
