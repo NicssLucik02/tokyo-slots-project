@@ -24,9 +24,9 @@ export const Spin:React.FC<Props> = ({ slotIcon, spinToken = 0, stopIndex, onSto
             className={styles.spinTrack}
             style={{ transform: `translateY(-${position}px)` }}
           >
-            {reelItems.map((src, i) => (
-              <div key={i} className={styles.spinItem}>
-                <Image src={src} width={40} height={40} className={styles.spinItemImage} alt="slot symbol" />
+            {reelItems().map((item) => (      
+              <div key={item.id} className={styles.spinItem}>
+                <Image src={item.src} width={40} height={40} className={styles.spinItemImage} alt="slot symbol" />
               </div>
             ))}
           </div>

@@ -30,4 +30,17 @@
         justify-content: center;
         gap: 13px;
     }
+    
+    &Jackpot {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 10px;
+        font-family: 'Bungee';
+        color: var(--color-blue);
+        font-size: 16px;
+        font-weight: 400;
+        -webkit-text-stroke: 2px rgba(52, 29, 26, 1);
+    }
 }

@@ -4,9 +4,10 @@ import styles from './inputSlots.module.scss'
 type Props = {
     bet: string;
     handleChange: (amount: string) => void;
+    disabled?: boolean;
 }
 
-export const InputSlots:React.FC<Props> = ({bet, handleChange}) => {
+export const InputSlots:React.FC<Props> = ({bet, handleChange, disabled}) => {
     return (
         <div className={styles.inputSlotsContainer}>
             <Image 
@@ -21,6 +22,8 @@ export const InputSlots:React.FC<Props> = ({bet, handleChange}) => {
               placeholder='0.00'
               value={bet} 
               onChange={(e) => handleChange(e.target.value)}
+              disabled={disabled}
+              aria-disabled={disabled}
                
             />
         </div>

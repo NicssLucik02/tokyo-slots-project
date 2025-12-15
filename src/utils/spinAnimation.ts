@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { symbols } from "../constants/symbols";
 
 type Params = {
@@ -117,11 +117,18 @@ export const useSpinAnimation = ({ spinToken = 0, stopIndex, allowStop = false, 
         rafRef.current = null;
       }
     };
-  }, [spinToken]);
+  }, [spinToken, cycleHeight, onStop, stopIndex, totalHeight]);
 
-  const reelItems = useMemo(() => {
-    return Array.from({ length: totalItems }, (_, i) => symbols[i % symbols.length]);
-  }, [totalItems]);
+  const reelItems = () => {
+    const counts = new Map<string, number>();
+    return Array.from({ length: totalItems }, (_, i) => {
+      const src = symbols[i % symbols.length];
+      const seen = counts.get(src) ?? 0;
+      counts.set(src, seen + 1);
+      const id = `${src}-${seen}`;
+      return { id, src };
+    });
+  };
 
   return { reelItems, position };
 };

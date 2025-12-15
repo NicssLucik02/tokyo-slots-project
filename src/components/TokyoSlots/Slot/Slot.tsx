@@ -2,7 +2,7 @@
 import Image from "next/image"
 import styles from "./slot.module.scss"
 import eyeImage from '../../../assets/images/eye.png';
- import slotBottom from '../../../assets/images/SlotBottom.png';
+import slotBottom from '../../../assets/images/SlotBottom.png';
 import { Spin } from "./SlotDesign/Spin/Spin";
 import { useSlotStore } from "@/src/store/useSlotStore";
 import { useEffect, useRef, useState } from "react";
@@ -11,7 +11,7 @@ export const Slot = () => {
     const { isSpinning, reelStops, spinToken, computeWinFromReels, finishSpin } = useSlotStore();
     const [allowStops, setAllowStops] = useState<[boolean, boolean, boolean, boolean]>([false, false, false, false]);
     const [stopped, setStopped] = useState<(number | null)[]>([null, null, null, null]);
-    const seqTimeoutRef = useRef<number | null>(null);
+    const seqTimeoutRef = useRef<ReturnType<typeof window.setTimeout> | null>(null);
     const seqDelayMs = 350;
     const startDelayMs = 600;
     const currentSpinRef = useRef<number | null>(null);
@@ -28,7 +28,7 @@ export const Slot = () => {
             if (currentSpinRef.current !== tokenAtStart) return;
             setStopped([null, null, null, null]);
             setAllowStops([false, false, false, false]);
-            seqTimeoutRef.current = window.setTimeout(() => {
+            seqTimeoutRef.current = setTimeout(() => {
                 if (currentSpinRef.current !== tokenAtStart) return;
                 setAllowStops([true, false, false, false]);
                 seqTimeoutRef.current = null;
@@ -48,7 +48,7 @@ export const Slot = () => {
                 seqTimeoutRef.current = null;
             }
             const tokenAtSchedule = currentSpinRef.current;
-            seqTimeoutRef.current = window.setTimeout(() => {
+            seqTimeoutRef.current = setTimeout(() => {
                 if (currentSpinRef.current !== tokenAtSchedule) return;
                 setAllowStops(() => {
                     const next: [boolean, boolean, boolean, boolean] = [false, false, false, false];

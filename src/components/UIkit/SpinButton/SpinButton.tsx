@@ -8,13 +8,13 @@ import spinButtonTopClick from "../../../assets/images/SpinButtonParts/SpinButto
 import spinButtonText from "../../../assets/images/SpinButtonParts/SpinButtonText.png"
 
 type Props = {
-    action: () => void;
+    onClick: () => void;
     disabled?: boolean;
 }
 
-export const SpinButton:React.FC <Props> = ({ action, disabled }) => {
+export const SpinButton:React.FC <Props> = ({ onClick, disabled }) => {
     return (
-        <button className={styles.spinButtonContainer} onClick={action} disabled={disabled} aria-disabled={disabled}>
+        <button className={styles.spinButtonContainer} onClick={onClick} disabled={disabled} aria-disabled={disabled}>  
             <Image src={spinButtonBase} className={styles.spinButtonBase} alt="spinButtonBase" />
             <Image src={spinButtonBaseBorders} className={styles.spinButtonBaseBorders} alt="spinButtonBaseBorders" />
             <Image src={spinButtonBaseTop} className={styles.spinButtonBaseTop} alt="spinButtonBaseTop" />
