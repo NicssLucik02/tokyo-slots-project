@@ -1,11 +1,11 @@
 @import '../../../styles/mixins.scss';
 
 .primaryButton {
-    width: 65px;
-    height: 65px;
+    width: 63px;
+    height: 59px;
     border-radius: 16px;
     border: 2px solid var(--color-brown);
-    box-shadow: 0 6px 0 rgba(81, 88, 149, 1);
+    box-shadow: 0 4px 0 rgba(81, 88, 149, 1);
     background-color: var(--color-white);
     font-family: 'Bungee';
     display: flex;
@@ -25,9 +25,9 @@
   &:active {
     transform: translateY(10px);
     box-shadow:
-      0 8px 0 var(--btn-shadow),
-      0 16px 10px rgba(0, 0, 0, 0.4),
-      0 0 18px rgba(247, 64, 94, 0.5);
+      0 4px 0 var(--btn-shadow),
+      0 14px 10px rgba(0, 0, 0, 0.4),
+      0 0 14px rgba(247, 64, 94, 0.5);
       background-color: rgb(150, 149, 149);
   }
 

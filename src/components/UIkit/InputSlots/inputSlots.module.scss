@@ -10,6 +10,10 @@
     width: 80%;
     z-index: 5;
 
+    &::placeholder {
+        color: #fff;
+    }
+
     @include mobile {
         width: 80%;
     }
@@ -30,7 +34,7 @@
         padding-inline: 17px;
         border: 2px solid var(--color-brown);
 
-        box-shadow: 0 -8px 0px var(--color-brown);
+        box-shadow: 0 -4px 0px var(--color-brown);
 
         @include mobile {
             width: 180px;
