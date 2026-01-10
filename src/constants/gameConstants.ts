@@ -1,0 +1,7 @@
+export const GAME_CONSTANTS = {
+  REELS_COUNT: 4,
+  SYMBOLS_COUNT: 6,
+  SEVEN_INDEX: 0,
+  BET_STEP: 50,      
+  INITIAL_BALANCE: 1000,
+};

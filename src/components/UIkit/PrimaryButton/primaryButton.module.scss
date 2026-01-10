@@ -1,0 +1,44 @@
+@import '../../../styles/mixins.scss';
+
+.primaryButton {
+    width: 63px;
+    height: 59px;
+    border-radius: 16px;
+    border: 2px solid var(--color-brown);
+    box-shadow: 0 4px 0 rgba(81, 88, 149, 1);
+    background-color: var(--color-white);
+    font-family: 'Bungee';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+    backface-visibility: hidden;
+    -webkit-tap-highlight-color: transparent;
+    z-index: 5;
+
+    @include mobile {
+      width: 48px;
+      height: 48px;
+    }
+
+  &:active {
+    transform: translateY(10px);
+    box-shadow:
+      0 4px 0 var(--btn-shadow),
+      0 14px 10px rgba(0, 0, 0, 0.4),
+      0 0 14px rgba(247, 64, 94, 0.5);
+      background-color: rgb(150, 149, 149);
+  }
+
+    &Content {
+        font-size: 25px;
+        font-weight: 400;
+        color: var(--color-brown);
+    }
+}
+
+.disabled {
+  background-color: rgb(150, 149, 149);
+  pointer-events: none; 
+}

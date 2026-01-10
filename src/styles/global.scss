@@ -1,0 +1,40 @@
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+:root {
+    --color-red: rgba(247, 64, 94, 1);
+    --color-blue: rgba(165, 223, 247, 1);
+    --color-blue-hover: rgba(0, 118, 204, 1);
+    --color-background-tokyo: rgba(218, 243, 166, 1);
+    --color-brown: rgba(52, 29, 26, 1);
+    --color-white: rgba(254, 254, 255, 1);
+}
+
+html {
+    min-height: 100vh;
+}
+body {
+    background-color: var(--color-background-tokyo);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.appContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,43 @@
+@import '../../../styles/mixins.scss';
+
+.inputSlots {
+    background-color: rgba(136, 124, 123, 1);
+    font-family: 'Bungee';
+    color: var(--color-white);
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    width: 80%;
+    z-index: 5;
+
+    &::placeholder {
+        color: #fff;
+    }
+
+    @include mobile {
+        width: 80%;
+    }
+    
+    &:focus {
+        outline: none;
+    }
+
+    &Container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(136, 124, 123, 1);
+        width: 200px;
+        height: 55px;
+        gap: 4px;
+        border-radius: 16px;
+        padding-inline: 17px;
+        border: 2px solid var(--color-brown);
+
+        box-shadow: 0 -4px 0px var(--color-brown);
+
+        @include mobile {
+            width: 180px;
+        }
+    }
+}
